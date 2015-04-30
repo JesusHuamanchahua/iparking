@@ -60,6 +60,7 @@ var UserSchema = new Schema({
     type: String,
     unique: true,
     required: true,
+    index: true,
     get: escapeProperty
   },
   roles: {
