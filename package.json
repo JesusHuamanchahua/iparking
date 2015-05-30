@@ -36,6 +36,7 @@
     "lodash": "2.4.1",
     "meanio": "linnovate/meanio",
     "mongoose": "3.8.24",
+    "mongoose-timestamp": "^0.4.0",
     "morgan": "1.5.0",
     "ms": "0.6.2",
     "nodemailer": "1.2.2",
@@ -80,7 +81,7 @@
     "gulp-uglify": "^1.0.1",
     "gulp-util": "^3.0.1",
     "jshint-stylish": "^1.0.0",
-    "require-dir":"latest",
+    "require-dir": "latest",
     "through": "^2.3.6"
   }
 }

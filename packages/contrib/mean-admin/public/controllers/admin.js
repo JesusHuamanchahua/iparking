@@ -9,27 +9,29 @@ angular.module('mean.mean-admin').controller('AdminController', ['$scope', 'Glob
         var icons = 'mean-admin/assets/img/icons/';
         
         // Default hard coded menu items for main menu
-        var defaultAdminMenu = [{
-            'roles': ['admin'],
-            'title': 'MODULES',
-            'link': 'modules',
-            'icon': icons + 'modules.png'
-        }, {
-            'roles': ['admin'],
-            'title': 'THEMES',
-            'link': 'themes',
-            'icon': icons + 'themes.png'
-        }, {
-            'roles': ['admin'],
-            'title': 'SETTINGS',
-            'link': 'settings',
-            'icon': icons + 'settings.png'
-        }, {
-            'roles': ['admin'],
-            'title': 'USERS',
-            'link': 'users',
-            'icon': icons + 'users.png'
-        }];
+        var defaultAdminMenu = [
+        // {
+        //     'roles': ['admin'],
+        //     'title': 'MODULES',
+        //     'link': 'modules',
+        //     'icon': icons + 'modules.png'
+        // }, {
+        //     'roles': ['admin'],
+        //     'title': 'THEMES',
+        //     'link': 'themes',
+        //     'icon': icons + 'themes.png'
+        // }, {
+        //     'roles': ['admin'],
+        //     'title': 'SETTINGS',
+        //     'link': 'settings',
+        //     'icon': icons + 'settings.png'
+        // }, {
+        //     'roles': ['admin'],
+        //     'title': 'USERS',
+        //     'link': 'users',
+        //     'icon': icons + 'users.png'
+        // }
+        ];
 
         // Query menus added by modules. Only returns menus that user is allowed to see.
         function queryMenu(name, defaultMenu) {

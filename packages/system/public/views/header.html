@@ -5,7 +5,7 @@
 
     <div class="left pull-left">
         <ul class="navbar-nav nav">
-            <li data-ng-repeat="item in menus.main" ui-route="/{{item.link}}" ng-class="{active: $uiRoute}">
+            <li data-ng-repeat="item in menus.admin" ui-route="/{{item.link}}" ng-class="{active: $uiRoute}">
                 <a mean-token="item.link" ui-sref='{{item.link}}'>{{item.title}}</a>
             </li>
         </ul>
@@ -17,9 +17,9 @@
             <div class="pull-right" data-ng-show="global.authenticated" mean-translate></div>
         </div>
         <ul class="navbar-nav nav" data-ng-hide="global.authenticated">
-            <li><a ui-sref='auth.register'>Join</a>
+            <!-- <li><a ui-sref='auth.register'>Join</a>
             </li>
-            <li class="divider-vertical"></li>
+            <li class="divider-vertical"></li> -->
             <li><a ui-sref='auth.login'>Log In</a>
             </li>
         </ul>

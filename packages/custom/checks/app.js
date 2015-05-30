@@ -18,10 +18,10 @@ Checks.register(function(app, auth, database) {
 
   //We are adding a link to the main menu for all authenticated users
   Checks.menus.add({
-    title: 'checks example page',
-    link: 'checks example page',
-    roles: ['authenticated'],
-    menu: 'main'
+    title: 'Checks',
+    link: 'checks',
+    roles: ['admin'],
+    menu: 'admin'
   });
   
   Checks.aggregateAsset('css', 'checks.css');

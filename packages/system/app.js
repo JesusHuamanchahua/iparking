@@ -32,6 +32,13 @@ SystemPackage.register(function(app, auth, database) {
   app.useStatic(__dirname + '/public/assets/static');
 
   SystemPackage.menus.add({
+    title: 'Users',
+    link: 'users',
+    roles: ['admin'],
+    menu: 'admin'
+  });
+
+  SystemPackage.menus.add({
     title: 'Log Out',
     link: 'Log Out',
     roles: ['authenticated'],
