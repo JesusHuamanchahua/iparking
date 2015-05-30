@@ -3,18 +3,18 @@
 {% include '../includes/head.html' %}
 
 <body data-ng-controller="ThemeController" ng-cloak class="ng-cloak" ng-class="state">
-    <nav data-ng-include="'/system/views/header.html'" data-role="navigation"></nav>
+    <header>
+        <nav data-ng-include="'/system/views/header.html'" data-role="navigation"></nav>
+    </header>
     <!-- {% if adminEnabled %}
     <section class="admin-menu">
         Se incluye el menú para el administrador
         <div data-ng-include="'/mean-admin/views/index.html'"></div>
     </section>
     {% endif %} -->
-    <section class="content">
-        <section class="container">
-            {% block content %}{% endblock %}
-        </section>
-    </section>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
     {% include '../includes/foot.html' %}
 </body>
 

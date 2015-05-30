@@ -26,7 +26,6 @@ angular.module('mean.system').controller('HeaderController', ['$scope', '$rootSc
         queryMenu('admin', defaultAdminMenu);
         queryMenu('account', []);
 
-
         $scope.isCollapsed = false;
 
         $rootScope.$on('loggedin', function() {

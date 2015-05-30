@@ -1,4 +1,5 @@
 'use strict';
+/*global $:false*/
 
 angular.module('mean.system').controller('IndexController', ['$scope', 'Global',
   function($scope, Global) {
@@ -54,5 +55,9 @@ angular.module('mean.system').controller('IndexController', ['$scope', 'Global',
         console.log('currentSlide:', currentSlide);
       }
     });
+
+    $(document).ready(function() {
+            $('ul.tabs').tabs();
+        });
   }
 ]);
