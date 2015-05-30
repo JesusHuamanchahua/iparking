@@ -1,7 +1,9 @@
 {
   "core": {
     "css": {
-      "bower_components/build/css/dist.min.css": []
+      "bower_components/build/css/dist.min.css": [
+        "bower_components/materialize/dist/css/materialize.min.css"
+      ]
     },
     "js": {
       "bower_components/build/js/dist.min.js": [
@@ -14,6 +16,7 @@
         "bower_components/angular-bootstrap/ui-bootstrap-tpls.js",
         "bower_components/web-bootstrap/index.js",
         "bower_components/zeroclipboard/dist/ZeroClipboard.min.js",
+        "bower_components/materialize/dist/js/materialize.min.js",
         "bower_components/ng-clip/dest/ng-clip.min.js"
       ]
     }

@@ -12,7 +12,7 @@ var Admin = new Module('mean-admin');
  */
 
 Admin.register(function(app, auth, database) {
-    Admin.aggregateAsset('css', 'admin.css');
+    // Admin.aggregateAsset('css', 'admin.css');
     
     // Admin.aggregateAsset('js', '../lib/ng-clip/src/ngClip.js', {
     //     absolute: false,

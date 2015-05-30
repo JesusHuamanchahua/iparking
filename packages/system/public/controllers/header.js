@@ -1,41 +1,49 @@
 'use strict';
+/*global $:false*/
 
 angular.module('mean.system').controller('HeaderController', ['$scope', '$rootScope', 'Global', 'Menus',
-  function($scope, $rootScope, Global, Menus) {
-    $scope.global = Global;
-    $scope.menus = {};
+    function($scope, $rootScope, Global, Menus) {
+        $scope.global = Global;
+        $scope.menus = {};
 
-    // Default hard coded menu items for main menu
-    // var defaultMainMenu = [];
-    var defaultAdminMenu = [];
+        // Default hard coded menu items for main menu
+        // var defaultMainMenu = [];
+        var defaultAdminMenu = [];
 
-    // Query menus added by modules. Only returns menus that user is allowed to see.
-    function queryMenu(name, defaultMenu) {
+        // Query menus added by modules. Only returns menus that user is allowed to see.
+        function queryMenu(name, defaultMenu) {
 
-      Menus.query({
-        name: name,
-        defaultMenu: defaultMenu
-      }, function(menu) {
-        $scope.menus[name] = menu;
-      });
+            Menus.query({
+                name: name,
+                defaultMenu: defaultMenu
+            }, function(menu) {
+                $scope.menus[name] = menu;
+            });
+        }
+
+        // Query server for menus and check permissions
+        // queryMenu('main', defaultMainMenu);
+        queryMenu('admin', defaultAdminMenu);
+        queryMenu('account', []);
+
+
+        $scope.isCollapsed = false;
+
+        $rootScope.$on('loggedin', function() {
+
+            queryMenu('admin', defaultAdminMenu);
+
+            $scope.global = {
+                authenticated: !!$rootScope.user,
+                user: $rootScope.user
+            };
+        });
+
+        $(document).ready(function() {
+            $('.dropdown-button').dropdown({
+                hover: false
+            });
+        });
+
     }
-
-    // Query server for menus and check permissions
-    // queryMenu('main', defaultMainMenu);
-    queryMenu('admin', defaultAdminMenu);
-    queryMenu('account', []);
-
-
-    $scope.isCollapsed = false;
-
-    $rootScope.$on('loggedin', function() {
-
-      queryMenu('admin', defaultAdminMenu);
-
-      $scope.global = {
-        authenticated: !! $rootScope.user,
-        user: $rootScope.user
-      };
-    });
-  }
 ]);
