@@ -10,6 +10,7 @@ module.exports = function(Admin, app, auth, database) {
     var users = require('../controllers/users');
     app.get('/admin/users', auth.requiresAdmin, users.all);
     app.post('/admin/users', auth.requiresAdmin, users.create);
+    app.get('/admin/users/:anUserId', users.show);
     app.put('/admin/users/:userId', auth.requiresAdmin, users.update);
     app.delete('/admin/users/:userId', auth.requiresAdmin, users.destroy);
 
@@ -36,4 +37,6 @@ module.exports = function(Admin, app, auth, database) {
     var settings = require('../controllers/settings');
     app.get('/admin/settings', auth.requiresAdmin, settings.get);
     app.put('/admin/settings', auth.requiresAdmin, settings.save);
+
+    app.param('anUserId', users.user);
 };

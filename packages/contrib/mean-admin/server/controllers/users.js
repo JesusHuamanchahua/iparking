@@ -62,6 +62,11 @@ exports.user = function(req, res, next, id) {
             next();
         });
 };
+
+exports.show = function(req, res) {
+    res.jsonp(req.profile);
+};
+
 /**
  * Update a user
  */

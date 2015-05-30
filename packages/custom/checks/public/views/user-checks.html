@@ -1,6 +1,6 @@
 <div class="container" data-ng-controller="UserChecksController">
   <section class="section">
-    <h1>User Checks</h1>
+    <h1 class="truncate">{{ user.name }} Checks</h1>
     <ul class="collection">
       <li class="collection-header">
         <nav>
@@ -18,14 +18,10 @@
       <li class="collection-item avatar" data-ng-repeat="check in checks | filter : filter">
         <i class="circle" data-ng-class="{'mdi-file-file-download green darken-1': check.type === 'in', 'mdi-file-file-upload red darken-1': check.type === 'out'}"></i>
         <div class="row">
-          <div class="col s6 m7">
-            <div class="left">
-              <span class="title"><a data-ng-href="#!/admin/users/{{ check.user._id }}/checks"><i class="mdi-action-account-circle left"></i>{{ check.user.name }}</a></span>
-              <p><i class="mdi-action-today left"></i>{{ check.date }}</p>
-            </div>
-          </div>
-          <div class="col s6 m5">
-            <h5 class="right"><i class="mdi-device-access-time left"></i>{{ check.time }}</h5>
+          <div class="col s12">
+            <pre>
+              {{ check.duration }}
+            </pre>
           </div>
         </div>
       </li>
