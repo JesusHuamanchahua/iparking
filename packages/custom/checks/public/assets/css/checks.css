@@ -12,20 +12,71 @@ main {
     margin-left: 15px;
 }
 
+.btn-block {
+    width: 100%;
+    display: block;
+}
+
+.no-margin-bottom {
+    margin-bottom: 0;
+}
+
+.fixed-action-btn button.edit-users-btn i.mdi-editor-mode-edit:before {
+    /* Firefox */
+    
+    -moz-transition: all .3s ease;
+    /* WebKit */
+    
+    -webkit-transition: all .3s ease;
+    /* Opera */
+    
+    -o-transition: all .3s ease;
+    /* Standard */
+    
+    transition: all .3s ease;
+}
+
+.fixed-action-btn:hover button.edit-users-btn i.mdi-editor-mode-edit:before {
+    /* Firefox */
+    
+    -moz-transform: rotate(360deg);
+    /* WebKit */
+    
+    -webkit-transform: rotate(360deg);
+    /* Opera */
+    
+    -o-transform: rotate(360deg);
+    /* Standard */
+    
+    transform: rotate(360deg);
+
+    content: "\e8d9";
+}
+
 .log-out-str {
-  margin-top: 20px;
+    margin-top: 20px;
 }
 
 .collection .collection-item {
-  height: 90px !important;
+    height: 90px !important;
 }
 
 .collection .collection-item.avatar {
-  height: 65px !important;
+    height: 65px !important;
 }
 
-.col.s6.m4.inner, .col.s12.m4.inner {
-  margin-top: 15px;
+.col.s6.m4.inner,
+.col.s12.m4.inner {
+    margin-top: 15px;
+}
+
+.card .card-title i.login-avatar {
+    font-size: 4rem;
+    display: block;
+}
+
+.time {
+    margin: 0;
 }
 
 @media only screen and (min-width: 993px) {

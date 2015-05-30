@@ -1,19 +1,26 @@
 <div data-ng-controller="LoginCtrl">
-
-    <div class="alert alert-danger animated fadeIn" ng-show="loginerror">{{loginerror}}</div>
-
-    <h2>Login</h2>
-
-    <form id="login_form" ng-submit="login()">
-        <div class="input-wrapper">
-            <input required id="email_block" type="email" name="email" placeholder="Email Address" ng-model="user.email">
+    <div class="row">
+        <div class="col s12 m6 offset-m3">
+            <form id="login-form" name="loginForm" class="card" ng-submit="login()" novalidate>
+                <div class="card-title center blue-grey-text">
+                    <i class="login-avatar mdi-action-account-circle"></i>
+                    <span class="flow-text">Login</span>
+                </div>
+                <div class="card-content">
+                    <div class="input-field">
+                        <label for="email">Email</label>
+                        <input id="email" type="email" name="email" ng-model="user.email" required>
+                    </div>
+                    <div class="input-field">
+                        <label for="password">Password</label>
+                        <input id="password" name="password" type="password" ng-model="user.password" required>
+                    </div>
+                </div>
+                <div class="card-action">
+                    <a class="btn-flat" ui-sref='forgot-password'>Forgot your password?</a>
+                    <button type="submit" class="waves-effect waves-light btn right" data-ng-disabled="loginForm.$invalid">Login</button>
+                </div>
+            </form>
         </div>
-        <div class="input-wrapper">
-            <input required id="password_block" name="password" type="{{input.type}}" placeholder="{{input.placeholder}}" ng-model="user.password">
-        </div>
-        <div>
-            <a ui-sref='forgot-password'>Forgot your password?</a>
-            <button type="submit" class="waves-effect waves-light btn right">Login</button>
-        </div>
-    </form>
+    </div>
 </div>

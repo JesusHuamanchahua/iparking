@@ -1,10 +1,10 @@
 <div class="container" data-ng-controller="IndexController">
     <section class="section">
         <div class="row ">
-            <div class="col s12">
-                <h5 class="center-align">{{ date }}</h5>
-                <h1 class="center-align">{{ time }}</h1>
-                <h2 class="center-align">Check <span data-ng-show="checkIn">In</span>
+            <div class="center-align col s12">
+                <h1 class="time"><i class="mdi-device-access-time"></i><br>{{ time }}</h1>
+                <h5 class="date">{{ date }}</h5>
+                <h2 class="check">Check <span data-ng-show="checkIn">In</span>
                 <span data-ng-hide="checkIn">Out</span></h2>
                 <div class="switch center-align">
                     <label>
