@@ -2,11 +2,14 @@
     <section class="section">
         <div class="row ">
             <div class="col s12">
-                <h1 class="center-align">Check</h1>
+                <h5 class="center-align">{{ date }}</h5>
+                <h1 class="center-align">{{ time }}</h1>
+                <h2 class="center-align">Check <span data-ng-show="checkIn">In</span>
+                <span data-ng-hide="checkIn">Out</span></h2>
                 <div class="switch center-align">
                     <label>
                         Out
-                        <input type="checkbox">
+                        <input type="checkbox" data-ng-model="checkIn">
                         <span class="lever"></span> In
                     </label>
                 </div>
@@ -17,10 +20,10 @@
             <div class="col s12">
                 <nav>
                     <div class="nav-wrapper">
-                        <form>
+                        <form novalidate>
                             <div class="input-field">
-                                <input id="search" type="search" required>
-                                <label for="search"><i class="mdi-action-search"></i></label>
+                                <input id="search" type="search" data-ng-model="username" ui-keypress="{enter:'saveCheck($event)'}" required>
+                                <label for="search"><i class="mdi-action-assignment-ind"></i></label>
                                 <i class="mdi-navigation-close"></i>
                             </div>
                         </form>

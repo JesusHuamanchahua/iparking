@@ -1,18 +1,16 @@
 'use strict';
-/*global $:false*/
 
 angular.module('mean.system').controller('HeaderController', ['$scope', '$rootScope', 'Global', 'Menus',
     function($scope, $rootScope, Global, Menus) {
         $scope.global = Global;
         $scope.menus = {};
+        $scope.menus.admin = [];
 
         // Default hard coded menu items for main menu
         // var defaultMainMenu = [];
-        var defaultAdminMenu = [];
 
         // Query menus added by modules. Only returns menus that user is allowed to see.
         function queryMenu(name, defaultMenu) {
-
             Menus.query({
                 name: name,
                 defaultMenu: defaultMenu
@@ -23,14 +21,12 @@ angular.module('mean.system').controller('HeaderController', ['$scope', '$rootSc
 
         // Query server for menus and check permissions
         // queryMenu('main', defaultMainMenu);
-        queryMenu('admin', defaultAdminMenu);
+        queryMenu('admin', []);
         queryMenu('account', []);
-
-        $scope.isCollapsed = false;
 
         $rootScope.$on('loggedin', function() {
 
-            queryMenu('admin', defaultAdminMenu);
+            queryMenu('admin', []);
 
             $scope.global = {
                 authenticated: !!$rootScope.user,

@@ -13,11 +13,14 @@
         "bower_components/angular-cookies/angular-cookies.min.js",
         "bower_components/angular-resource/angular-resource.min.js",
         "bower_components/angular-ui-router/release/angular-ui-router.min.js",
+        "bower_components/angular-ui-utils/keypress.min.js",
         "bower_components/angular-bootstrap/ui-bootstrap-tpls.js",
         "bower_components/web-bootstrap/index.js",
         "bower_components/zeroclipboard/dist/ZeroClipboard.min.js",
         "bower_components/materialize/dist/js/materialize.min.js",
-        "bower_components/ng-clip/dest/ng-clip.min.js"
+        "bower_components/ng-clip/dest/ng-clip.min.js",
+        "bower_components/moment/min/moment.min.js",
+        "bower_components/moment/locale/es.js"
       ]
     }
   }
