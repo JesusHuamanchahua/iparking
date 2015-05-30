@@ -64,8 +64,9 @@ test/coverage/
 modules/public/
 modules/views/
 /public/build/
-/packages/custom/
-/packages/contrib/
+#/packages/custom/
+/packages/contrib/.bower-*/
+/packages/contrib/node_modules
 
 # --------------------
 # vim Files
