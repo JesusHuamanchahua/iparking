@@ -12,7 +12,7 @@ var mongoose = require('mongoose'),
 exports.create = function(req, res, next) {
 
     req.assert('username', 'You must enter a valid username').notEmpty();
-    req.assert('type', 'You must enter a valid check type in7out').isIn(['in', 'out']);
+    req.assert('type', 'You must enter a valid check type in/out').isIn(['in', 'out']);
 
     var errors = req.validationErrors();
 
@@ -26,37 +26,42 @@ exports.create = function(req, res, next) {
         username: req.body.username
     }, function(err, user) {
         if (err) {
-            return res.status(500).jsonp(err);
+            return res.status(500).send('Please try again');
         }
         if (!user) {
-            return res.status(404).jsonp({
-                message: 'User not found'
-            });
+            return res.status(404).send('Invalid username');
         }
 
-        var check = new Check(req.body);
+        var check = new Check(req.body),
+            inverseType = {
+                'in': 'out',
+                'out': 'in'
+            },
+            tryAgainMsg = 'Try again ' + user.name.split(' ')[0],
+            tryCheckingInverse = 'First try checking ' + inverseType[check.type];
 
         check.user = user._id.toString();
 
         var saveSendCheck = function(err) {
             if (err) {
-                err.user = user;
-                return res.status(500).jsonp(err);
+                return res.status(err.status).send(err.message);
             }
             check.save(function(err) {
                 if (err) {
-
-                    err.user = user;
-                    err.message = 'Check type must be different than previous';
-
-                    return res.status(500).jsonp(err);
+                    return res.status(409).send(tryAgainMsg);
                 }
-                Check.populate(check, {
-                    path: 'user',
-                    model: 'User'
-                }, function(err, _check) {
-                    res.jsonp(_check || check);
-                });
+                // Check.populate(check, {
+                //     path: 'user',
+                //     model: 'User',
+                //     select: 'name'
+                // }, function(err, _check) {
+                //     res.jsonp(_check || check);
+                // });
+                check._doc.user = {
+                    _id: user._id,
+                    name: user.name
+                };
+                res.jsonp(check);
             });
         };
 
@@ -66,19 +71,16 @@ exports.create = function(req, res, next) {
             .sort('-created')
             .limit(1)
             .exec(function(err, _check) {
-                if (!err && !_check) {
-                    if (check.type === 'out') {
-                        err = {
-                            message: 'Check in must precede checking out'
-                        };
-                    } else {
-                        return saveSendCheck();
-                    }
-                } else if (check.type === _check.type) {
-                    err = {
-                        message: 'Check type must be different than previous'
-                    };
+                if (err) {
+                    err.status = 409;
+                    err.message = tryAgainMsg;
                 }
+                if (!_check || check.type === _check.type) {
+                    err = {};
+                    err.status = 409;
+                    err.message = tryCheckingInverse;
+                }
+
                 saveSendCheck(err);
             });
     });

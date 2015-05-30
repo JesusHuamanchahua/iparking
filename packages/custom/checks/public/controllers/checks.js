@@ -1,11 +1,17 @@
 'use strict';
-
 /* jshint -W098 */
-angular.module('mean.checks').controller('ChecksController', ['$scope', 'Global', 'Checks',
-  function($scope, Global, Checks) {
+(function(){
+  var ChecksController = function($scope, Global, Checks) {
     $scope.global = Global;
-    $scope.package = {
-      name: 'checks'
-    };
-  }
-]);
+    $scope.checks = [];
+    
+    Checks.query({}, function(checks){
+      $scope.checks = checks;
+    });
+
+  };
+
+  var dependencies = ['$scope', 'Global', 'Checks', ChecksController];
+
+  angular.module('mean.checks').controller('ChecksController', dependencies);
+})();

@@ -1,56 +1,19 @@
-<nav data-role="navigation">
-  <div class="nav-wrapper" data-ng-controller="HeaderController">
-    <a ui-sref="home" class="brand-logo"><i class="mdi-maps-directions-car left"></i>iParking</a>
-    <a href="#" data-activates="mobile-side-nav" class="button-collapse btn-ham"><i class="mdi-navigation-menu"></i></a>
-    <ul class="right hide-on-med-and-down">
-      <li data-ng-repeat="item in menus.admin" ui-route="/{{item.link}}" ng-class="{active: $uiRoute}"><a ui-sref='{{item.link}}'><i class="right" data-ng-class="{'mdi-action-swap-horiz': item.title === 'Checks', 'mdi-social-group': item.title === 'Users' }"></i>{{ item.title }}</a></li>
-      <li data-ng-hide="global.authenticated"><a ui-sref='auth.login'><i class="mdi-action-account-box right"></i>Log In</a></li>
-      <li data-ng-show="global.authenticated"><a class="dropdown-button" href="#!" data-activates="dropdown-account">{{ global.user.name }}<i class="mdi-action-account-box right"></i></a></li>
-    </ul>
-    <ul id="dropdown-account" class="dropdown-content">
-      <li><a href="/logout"><i class="mdi-action-exit-to-app right"></i><span class="left log-out-str">Log Out</span></a></li>
-    </ul>
-  </div>
-</nav>
-<ul class="side-nav" id="mobile-side-nav">
-  <li data-ng-repeat="item in menus.admin" ui-route="/{{item.link}}" ng-class="{active: $uiRoute}"><a ui-sref='{{item.link}}'><i class="left" data-ng-class="{'mdi-action-swap-horiz': item.title === 'Checks', 'mdi-social-group': item.title === 'Users' }"></i>{{ item.title }}</a></li>
-  <li data-ng-hide="global.authenticated"><a ui-sref='auth.login'><i class="mdi-action-account-box left"></i>Log In</a></li>
-  <li data-ng-show="global.authenticated"><a href="/logout"><i class="mdi-action-exit-to-app left"></i>Log Out</a></li>
-</ul>
-<!-- 
-<div class="page-header" data-ng-controller="HeaderController">
-  <div class="logo pull-left">
-    <a class="navbar-brand" ui-sref="home" mean-token="'site-title'">iParking</a>
-  </div>
-  <div class="left pull-left">
-    <ul class="navbar-nav nav">
-      <li data-ng-repeat="item in menus.admin" ui-route="/{{item.link}}" ng-class="{active: $uiRoute}">
-        <a mean-token="item.link" ui-sref='{{item.link}}'>{{item.title}}</a>
-      </li>
-    </ul>
-  </div>
-  <div class="account">
-    <div class="text-edit">
-      <div class="pull-right" data-ng-show="global.authenticated" mean-token-editable></div>
-      <div class="pull-right" data-ng-show="global.authenticated" mean-translate></div>
-    </div>
-    <ul class="navbar-nav nav" data-ng-hide="global.authenticated">
-      <li><a ui-sref='auth.register'>Join</a>
-            </li>
-            <li class="divider-vertical"></li> -->
-<!--  <li><a ui-sref='auth.login'>Log In</a>
-      </li>
-    </ul>
-    <ul class="navbar-nav nav" data-ng-show="global.authenticated">
-      <li ng-if="global.user.profile" class="dropdown" mean-profile-menu>x</li>
-      <li ng-if="!global.user.profile" class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    {{global.user.name}} <b class="caret"></b>
-                </a>
-        <ul class="dropdown-menu">
-          <li><a href="/logout">Log Out</a></li>
+<nav data-role="navigation" data-ng-controller="HeaderController">
+    <div class="nav-wrapper">
+        <a ui-sref="home" class="brand-logo"><i class="mdi-maps-directions-car left"></i>iParking</a>
+        <a href="#" data-activates="mobile-side-nav" class="button-collapse btn-ham"><i class="mdi-navigation-menu"></i></a>
+        <ul class="right hide-on-med-and-down">
+            <li data-ng-repeat="item in menus.admin" ui-route="/{{item.link}}" ng-class="{active: $uiRoute}"><a ui-sref='{{item.link}}'><i class="right" data-ng-class="{'mdi-action-swap-horiz': item.title === 'Checks', 'mdi-social-group': item.title === 'Users' }"></i>{{ item.title }}</a></li>
+            <li data-ng-hide="global.authenticated"><a ui-sref='auth.login'><i class="mdi-action-account-box right"></i>Log In</a></li>
+            <li data-ng-show="global.authenticated"><a class="dropdown-button" href="#!" data-activates="dropdown-account">{{ global.user.name }}<i class="mdi-action-account-box right"></i></a></li>
         </ul>
-      </li>
+    </div>
+    <ul class="side-nav" id="mobile-side-nav">
+        <li data-ng-repeat="item in menus.admin" ui-route="/{{item.link}}" data-ng-class="{active: $uiRoute}"><a ui-sref='{{item.link}}'><i class="small left" data-ng-class="{'mdi-action-swap-horiz': item.title === 'Checks', 'mdi-social-group': item.title === 'Users' }"></i>{{ item.title }}</a></li>
+        <li data-ng-hide="global.authenticated"><a ui-sref='auth.login'><i class="mdi-action-account-box small left"></i>Log In</a></li>
+        <li data-ng-show="global.authenticated"><a href="/logout"><i class="mdi-action-exit-to-app small left"></i>Log Out</a></li>
     </ul>
-  </div>
-</div> -->
+</nav>
+<ul id="dropdown-account" class="dropdown-content">
+    <li><a href="/logout"><i class="mdi-action-exit-to-app right"></i><span class="left log-out-str">Log Out</span></a></li>
+</ul>

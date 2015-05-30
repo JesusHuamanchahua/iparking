@@ -14,8 +14,7 @@
     "ng-clip": "~0.2.6",
     "zeroclipboard": "~2.2.0",
     "materialize": "~0.96.1",
-    "moment": "~2.10.2",
-    "angular-ui-utils": "bower-keypress"
+    "moment": "~2.10.2"
   },
   "resolutions": {
     "jquery": ">=2.1.1"

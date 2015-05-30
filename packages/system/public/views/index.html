@@ -9,7 +9,7 @@
                 <div class="switch center-align">
                     <label>
                         Out
-                        <input type="checkbox" data-ng-model="checkIn">
+                        <input type="checkbox" data-ng-model="checkIn" data-ng-change="focus('search')">
                         <span class="lever"></span> In
                     </label>
                 </div>
@@ -20,9 +20,9 @@
             <div class="col s12">
                 <nav>
                     <div class="nav-wrapper">
-                        <form novalidate>
+                        <form data-ng-submit="saveCheck($event)">
                             <div class="input-field">
-                                <input id="search" type="search" data-ng-model="username" ui-keypress="{enter:'saveCheck($event)'}" required>
+                                <input id="search" type="search" data-ng-model="username">
                                 <label for="search"><i class="mdi-action-assignment-ind"></i></label>
                                 <i class="mdi-navigation-close"></i>
                             </div>

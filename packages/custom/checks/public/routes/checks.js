@@ -2,8 +2,8 @@
 
 angular.module('mean.checks').config(['$stateProvider',
   function($stateProvider) {
-    $stateProvider.state('checks example page', {
-      url: '/checks/example',
+    $stateProvider.state('checks', {
+      url: '/checks',
       templateUrl: 'checks/views/index.html'
     });
   }
