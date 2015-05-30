@@ -26,6 +26,8 @@ Checks.register(function(app, auth, database) {
   
   Checks.aggregateAsset('css', 'checks.css');
 
+  Checks.angularDependencies(['mean.mean-admin']);
+
   /**
     //Uncomment to use. Requires meanio@0.3.7 or above
     // Save settings with callback

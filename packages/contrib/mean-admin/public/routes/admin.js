@@ -18,6 +18,6 @@ angular.module('mean.mean-admin').config(['$stateProvider', '$urlRouterProvider'
     }
 ]).config(['ngClipProvider',
     function(ngClipProvider) {
-        ngClipProvider.setPath('../mean-admin/assets/lib/zeroclipboard/dist/ZeroClipboard.swf');
+        ngClipProvider.setPath('../bower_components/zeroclipboard/dist/ZeroClipboard.swf');
     }
 ]);

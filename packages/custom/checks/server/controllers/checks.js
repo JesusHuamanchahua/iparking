@@ -26,19 +26,19 @@ exports.create = function(req, res, next) {
         username: req.body.username
     }, function(err, user) {
         if (err) {
-            return res.status(500).send('Please try again');
+            return res.status(500).send('Please Try Again');
         }
         if (!user) {
-            return res.status(404).send('Invalid username');
+            return res.status(404).send('Invalid Username');
         }
 
         var check = new Check(req.body),
             inverseType = {
-                'in': 'out',
-                'out': 'in'
+                'in': 'Out',
+                'out': 'In'
             },
-            tryAgainMsg = 'Try again ' + user.name.split(' ')[0],
-            tryCheckingInverse = 'First try checking ' + inverseType[check.type];
+            tryAgainMsg = 'Try Again ' + user.name.split(' ')[0],
+            tryCheckingInverse = 'First Try Checking ' + inverseType[check.type];
 
         check.user = user._id.toString();
 
@@ -50,13 +50,6 @@ exports.create = function(req, res, next) {
                 if (err) {
                     return res.status(409).send(tryAgainMsg);
                 }
-                // Check.populate(check, {
-                //     path: 'user',
-                //     model: 'User',
-                //     select: 'name'
-                // }, function(err, _check) {
-                //     res.jsonp(_check || check);
-                // });
                 check._doc.user = {
                     _id: user._id,
                     name: user.name
@@ -74,8 +67,13 @@ exports.create = function(req, res, next) {
                 if (err) {
                     err.status = 409;
                     err.message = tryAgainMsg;
-                }
-                if (!_check || check.type === _check.type) {
+                } else if (!_check) {
+                    if (check.type === 'out') {
+                    err = {};
+                    err.status = 409;
+                    err.message = tryCheckingInverse;
+                    }
+                } else if(check.type === _check.type) {
                     err = {};
                     err.status = 409;
                     err.message = tryCheckingInverse;
@@ -85,50 +83,6 @@ exports.create = function(req, res, next) {
             });
     });
 };
-
-/**
- * Find user by id
- */
-// exports.user = function(req, res, next, id) {
-//     User
-//         .findOne({
-//             _id: id
-//         })
-//         .exec(function(err, user) {
-//             if (err) return next(err);
-//             if (!user) return next(new Error('Failed to load User ' + id));
-//             req.profile = user;
-//             next();
-//         });
-// };
-/**
- * Update a user
- */
-// exports.update = function(req, res) {
-//     var user = req.profile;
-//     user = _.extend(user, req.body);
-
-//     user.save(function(err) {
-//         res.jsonp(user);
-//     });
-// };
-
-/**
- * Delete an user
- */
-// exports.destroy = function(req, res) {
-//     var user = req.profile;
-
-//     user.remove(function(err) {
-//         if (err) {
-//             res.render('error', {
-//                 status: 500
-//             });
-//         } else {
-//             res.jsonp(user);
-//         }
-//     });
-// };
 
 /**
  * List of Users
