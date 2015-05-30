@@ -24,16 +24,6 @@ angular.module('mean.mean-admin').controller('UsersController', ['$scope', 'Glob
             type: 'select',
             options: ['authenticated', 'admin'],
             inTable: true
-        }, {
-            title: 'Password',
-            schemaKey: 'password',
-            type: 'password',
-            inTable: false
-        }, {
-            title: 'Repeat password',
-            schemaKey: 'confirmPassword',
-            type: 'password',
-            inTable: false
         }];
         $scope.user = {};
 
@@ -50,12 +40,13 @@ angular.module('mean.mean-admin').controller('UsersController', ['$scope', 'Glob
                 email: $scope.user.email,
                 name: $scope.user.name,
                 username: $scope.user.username,
-                password: $scope.user.password,
-                confirmPassword: $scope.user.confirmPassword,
+                password: '$scope.user.password',
+                confirmPassword: '$scope.user.password',
                 roles: $scope.user.roles
             });
 
             user.$save(function(response) {
+                $scope.user = {};
                 $scope.users.push(response);
             });
 

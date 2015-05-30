@@ -16,9 +16,18 @@ main {
   margin-top: 20px;
 }
 
-.collection .collection-item.avatar {
-  height: 65px;
+.collection .collection-item {
+  height: 90px !important;
 }
+
+.collection .collection-item.avatar {
+  height: 65px !important;
+}
+
+.col.s6.m4.inner, .col.s12.m4.inner {
+  margin-top: 15px;
+}
+
 @media only screen and (min-width: 993px) {
     .brand-logo {
         margin-left: 15px;

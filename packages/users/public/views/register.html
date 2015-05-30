@@ -1,5 +1,6 @@
-<div data-ng-controller="RegisterCtrl">
-    <div ng-repeat="error in registerError">
+<div data-ng-controller="RegisterCtrl" class="container">
+    <section class="section">
+      <div ng-repeat="error in registerError">
         <div class="alert alert-danger animated fadeIn">{{error.msg}}</div>
     </div>
     <div class="alert alert-danger animated fadeIn" ng-show="usernameError">{{usernameError}}</div>
@@ -63,4 +64,5 @@
             <img src="/theme/assets/img/woman_ninja.png" alt="#">
         </div>
     </form>
+    </section>
 </div>

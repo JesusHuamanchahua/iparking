@@ -4,7 +4,7 @@
     <ul class="collection">
       <li class="collection-header">
         <nav>
-          <div class="nav-wrapper">
+          <div class="nav-wrapper blue-grey">
             <form>
               <div class="input-field">
                 <input id="filter" type="search" data-ng-model="filter">
@@ -15,13 +15,20 @@
           </div>
         </nav>
       </li>
-      <li class="collection-item avatar" data-ng-repeat="check in checks | filter : filter">
-        <i class="circle" data-ng-class="{'mdi-file-file-download green darken-1': check.type === 'in', 'mdi-file-file-upload red darken-1': check.type === 'out'}"></i>
+      <li class="collection-item" data-ng-repeat="check in checks | filter : filter">
         <div class="row">
-          <div class="col s12">
-            <pre>
-              {{ check.duration }}
-            </pre>
+          <div class="col s6 m4 inner right-align">
+            <i class="mdi-file-file-download green-text text-darken-1 small left"></i>{{ check.in.date }}<br>{{ check.in.time }}
+          </div>
+          <div class="col s6 m4 inner right-align">
+            <i class="mdi-file-file-upload red-text text-darken-1 small left"></i>
+            <span data-ng-hide="check.out"> ---- </span>
+            {{ check.out.date }}<br>{{ check.out.time }}
+          </div>
+          <div class="col s12 m4 inner right-align">
+            <i class="mdi-device-access-time small left"></i>
+            <span class="right" data-ng-hide="check.duration"> --- </span>
+            {{ check.duration }}
           </div>
         </div>
       </li>

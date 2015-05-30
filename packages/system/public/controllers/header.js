@@ -35,9 +35,9 @@ angular.module('mean.system').controller('HeaderController', ['$scope', '$rootSc
         });
 
         $(document).ready(function() {
-            $('.dropdown-button').dropdown({
-                hover: false
-            });
+            // $('.dropdown-button').dropdown({
+            //     hover: false
+            // });
             $('.button-collapse').sideNav();
         });
 

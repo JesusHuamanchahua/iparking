@@ -15,21 +15,23 @@
         var ChecksGroup = function(checkin, checkout) {
             this.in = checkin;
             this.out = checkout;
-            var duration = moment.duration(moment(checkout.created).diff(moment(checkin.created))),
-                hours = parseInt(duration.asHours()),
-                minutes = parseInt(duration.asMinutes()),
-                seconds = parseInt(duration.asSeconds()) - minutes * 60;
-            minutes -= hours * 60;
-            console.log(hours, minutes, seconds);
-            this.duration = '';
-            if (hours) {
-                this.duration += hours + ' hr' + (hours > 1 ? 's' : '');
-            }
-            if (minutes) {
-                this.duration += ' ' + minutes + ' min' + (minutes > 1 ? 's' : '');
-            }
-            if (seconds) {
-                this.duration += ' ' + seconds + ' sec' + (seconds > 1 ? 's' : '');
+            if (checkout) {
+                var duration = moment.duration(moment(checkout.created).diff(moment(checkin.created))),
+                    hours = parseInt(duration.asHours()),
+                    minutes = parseInt(duration.asMinutes()),
+                    seconds = parseInt(duration.asSeconds()) - minutes * 60;
+                minutes -= hours * 60;
+                console.log(hours, minutes, seconds);
+                this.duration = '';
+                if (hours) {
+                    this.duration += hours + ' hr' + (hours > 1 ? 's' : '');
+                }
+                if (minutes) {
+                    this.duration += ' ' + minutes + ' min' + (minutes > 1 ? 's' : '');
+                }
+                if (seconds) {
+                    this.duration += ' ' + seconds + ' sec' + (seconds > 1 ? 's' : '');
+                }
             }
         };
 
