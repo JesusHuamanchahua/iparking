@@ -43,6 +43,7 @@ angular.module('mean.system').controller('HeaderController', ['$scope', '$rootSc
             $('.dropdown-button').dropdown({
                 hover: false
             });
+            $('.button-collapse').sideNav();
         });
 
     }

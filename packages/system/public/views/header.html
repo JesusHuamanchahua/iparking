@@ -1,16 +1,22 @@
 <div class="nav-wrapper" data-ng-controller="HeaderController">
-  <ul class="left">
-      <li><a ui-sref="home" class="brand-logo"><i class="mdi-maps-directions-car left"></i>iParking</a></li>
-  </ul>
-  
-  <ul class="right">
-    <li data-ng-repeat="item in menus.admin" ui-route="/{{item.link}}" ng-class="{active: $uiRoute}"><a ui-sref='{{item.link}}'><i data-ng-class="{'mdi-action-swap-horiz': item.title === 'Checks', 'mdi-social-group': item.title === 'Users' }"></i> {{item.icon}}</a></li>
-    <li data-ng-hide="global.authenticated"><a ui-sref='auth.login'><i class="mdi-action-account-box"></i></a>
-    </li>
-    <li data-ng-show="global.authenticated"><a href="/logout">{{global.user.name}}<i class="mdi-action-exit-to-app right"></i></a></li>
-  </ul>
+    <a ui-sref="home" class="brand-logo"><i class="mdi-maps-directions-car left"></i>iParking</a>
+    <a href="#" data-activates="mobile-side-nav" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+    <ul class="right hide-on-med-and-down">
+        <li data-ng-repeat="item in menus.admin" ui-route="/{{item.link}}" ng-class="{active: $uiRoute}"><a ui-sref='{{item.link}}'><i class="right" data-ng-class="{'mdi-action-swap-horiz': item.title === 'Checks', 'mdi-social-group': item.title === 'Users' }"></i>{{ item.title }}</a></li>
+        <li data-ng-hide="global.authenticated"><a ui-sref='auth.login'><i class="mdi-action-account-box right"></i>Log In</a>
+        </li>
+        <li data-ng-show="global.authenticated"><a class="dropdown-button" href="#!" data-activates="dropdown-account">{{ global.user.name }}<i class="mdi-action-account-box right"></i></a></li>
+    </ul>
+    <ul id="dropdown-account" class="dropdown-content">
+        <li><a href="/logout"><i class="mdi-action-exit-to-app right"></i><span class="left">Log Out</span></a></li>
+    </ul>
+    <ul class="side-nav" id="mobile-side-nav">
+        <li data-ng-repeat="item in menus.admin" ui-route="/{{item.link}}" ng-class="{active: $uiRoute}"><a ui-sref='{{item.link}}'><i class="left" data-ng-class="{'mdi-action-swap-horiz': item.title === 'Checks', 'mdi-social-group': item.title === 'Users' }"></i>{{item.title}}</a></li>
+        <li data-ng-hide="global.authenticated"><a ui-sref='auth.login'><i class="mdi-action-account-box left"></i>Log In</a>
+        </li>
+        <li data-ng-show="global.authenticated"><a href="/logout"><i class="mdi-action-exit-to-app left"></i>Log Out</a></li>
+    </ul>
 </div>
-
 <!-- 
 <div class="page-header" data-ng-controller="HeaderController">
   <div class="logo pull-left">
