@@ -1,8 +1,22 @@
 <div class="container" data-ng-controller="ChecksController">
-  <section class="section">
-    <h1>Checks</h1>
-    <ul>
-      <li data-ng-repeat="check in checks">{{ check.created }}</li>
-    </ul>
-  </section>
+    <section class="section">
+        <h1>Checks</h1>
+        <ul>
+            <li class="collection-item" data-ng-repeat="check in checks">{{ check.created }}</li>
+        </ul>
+        <ul class="collection with-header">
+            <li class="collection-header">
+                <h4>Check</h4>
+            </li>
+            <li class="collection-item avatar" data-ng-repeat="check in checks">
+                <i class="mdi-file-folder circle"></i>
+                <span class="title">Chek {{ check.type }}</span>
+                <p>{{ check.created}}
+                    <br> 
+                    {{ check.username}}
+                </p>
+                <a href="#!" class="secondary-content"><i class="mdi-action-grade"></i></a>
+            </li>
+        </ul>
+    </section>
 </div>
