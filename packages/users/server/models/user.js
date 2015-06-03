@@ -48,20 +48,18 @@ var UserSchema = new Schema({
     required: true,
     get: escapeProperty
   },
-  email: {
+  // username: {
+  //   type: String,
+  //   unique: true,
+  //   required: true,
+  //   index: true,
+  //   get: escapeProperty
+  // },
+  registration_tag: {
     type: String,
-    required: true,
-    unique: true,
-    // Regexp to validate emails with more strict rules as added in tests/users.js which also conforms mostly with RFC2822 guide lines
-    match: [/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/, 'Please enter a valid email'],
-    validate: [validateUniqueEmail, 'E-mail address is already in-use']
-  },
-  username: {
-    type: String,
-    unique: true,
-    required: true,
     index: true,
-    get: escapeProperty
+    unique: true,
+    required: true
   },
   roles: {
     type: Array,
@@ -83,7 +81,15 @@ var UserSchema = new Schema({
   twitter: {},
   github: {},
   google: {},
-  linkedin: {}
+  linkedin: {},
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+    // Regexp to validate emails with more strict rules as added in tests/users.js which also conforms mostly with RFC2822 guide lines
+    match: [/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/, 'Please enter a valid email'],
+    validate: [validateUniqueEmail, 'E-mail address is already in-use']
+  }
 });
 
 /**

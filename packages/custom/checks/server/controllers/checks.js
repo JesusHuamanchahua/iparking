@@ -11,7 +11,7 @@ var mongoose = require('mongoose'),
  */
 exports.create = function(req, res, next) {
 
-    req.assert('username', 'You must enter a valid username').notEmpty();
+    req.assert('userId', 'You must enter a valid user ID').notEmpty();
     req.assert('type', 'You must enter a valid check type in/out').isIn(['in', 'out']);
 
     var errors = req.validationErrors();
@@ -23,7 +23,7 @@ exports.create = function(req, res, next) {
     var User = mongoose.model('User');
 
     User.findOne({
-        username: req.body.username
+        _id: req.body.userId
     }, function(err, user) {
         if (err) {
             return res.status(500).send('Please Try Again');

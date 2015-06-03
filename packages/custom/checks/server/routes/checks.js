@@ -24,9 +24,10 @@ module.exports = function(Checks, app, auth, database) {
     .get(checks.all)
     .post(checks.create);
 
-  app.get('/checks/example/render', function(req, res, next) {
-    Checks.render('index', {
-      package: 'checks'
+  app.get('/users/:userId/id', function(req, res, next) {
+    Checks.render('id', {
+      package: 'checks',
+      user: req.profile
     }, function(err, html) {
       //Rendering a view from the Package server/views
       res.send(html);

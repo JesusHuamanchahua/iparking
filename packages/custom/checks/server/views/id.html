@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="https://www.facebook.com/2008/fbml" itemscope="itemscope" itemtype="http://schema.org/Product">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>{{ user.name }} - iParking ID</title>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+    <meta name="keywords" content="node.js, express, mongoose, mongodb, angularjs, swig">
+    <meta name="description" content="MEAN - A Modern Stack: MongoDB, ExpressJS, AngularJS, NodeJS. (BONUS: Passport User Support).">
+    <meta property="fb:app_id" content="APP_ID">
+    <meta property="og:title" content="{{appName}} - {{title}}">
+    <meta property="og:description" content="MEAN - A Modern Stack: MongoDB, ExpressJS, AngularJS, NodeJS. (BONUS: Passport User Support).">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="APP_URL">
+    <meta property="og:image" content="APP_LOGO">
+    <meta property="og:site_name" content="MEAN - A Modern Stack">
+    <meta property="fb:admins" content="APP_ADMIN">
+    <link rel="stylesheet" href="/bower_components/materialize/dist/css/materialize.min.css">
+    <link rel="stylesheet" href="/checks/assets/css/id.css">
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+      <![endif]-->
+</head>
+
+<body>
+    <main class="">
+        <div class="row">
+            <div class="col s6">
+                <div class="card">
+                    <div class="card-header blue-grey white-text center-align">
+                        <h1 class="light"><i class="mdi-action-assignment-ind"></i> iParking ID</h1>
+                    </div>
+                    <div class="card-content center-align">
+                        <div class="row">
+                            <div class="col s12">
+                                <h4 class="light truncate">{{ user.name }}</h4>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col s12">
+                                <img id="barcode" class="barcode">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script type="text/javascript" src="/bower_components/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="/bower_components/materialize/dist/js/materialize.min.js"></script>
+    <script type="text/javascript" src="/bower_components/jsbarcode/CODE128.js"></script>
+    <script type="text/javascript" src="/bower_components/jsbarcode/JsBarcode.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+        console.log({{ user._id|json|safe }} );
+      $("#barcode").JsBarcode({{ user._id|json|safe }}, 'C');
+    });
+    </script>
+</body>
+
+</html>

@@ -66,29 +66,38 @@
                 </div>
             </div>
         </div>
-        <table class="table table-striped table-bordered table-hover editable-table" data-ng-show="users.length">
-            <tr>
-                <th data-ng-show="edit">
-                    Edit
-                </th>
-                <th data-ng-repeat="field in userSchema" data-ng-if="field.inTable">{{field.title}}</th>
-            </tr>
-            <tr>
-                <br>
-            </tr>
-            <tr data-ng-repeat="user in users | filter: filter">
-                <td data-ng-show="edit">
-                    <button class="waves-effect waves-light btn-floating red" data-ng-click="remove(user)">
-                        <i class="mdi-content-remove"></i>
-                    </button>
-                </td>
-                <td class="table-editable-cell" data-ng-repeat="field in userSchema" data-ng-if="field.inTable">
-                    <span data-ng-if="(field['type'] == 'text')" class="editable-span" data-ng-editable="update(user)" data-ng-editable-model="user[field['schemaKey']]"></span>
-                    <span data-ng-click="beforeSelect(field['schemaKey'], user)" data-ng-if="(field['type'] == 'select')" class="editable-span" data-ng-editable-select="update(user, field['schemaKey'])" data-ng-editable-select-model="user[field['schemaKey']]" data-ng-editable-select-options="field['options']">
+        <table class="hoverable responsive-table editable-table" data-ng-show="users.length">
+            <thead>
+                <tr>
+                    <th data-field="edit" data-ng-show="edit">Edit</th>
+                    <th data-field="{{field.schemaKey}}" data-ng-repeat="field in userSchema" data-ng-if="field.inTable">{{field.title}}</th>
+                    <th class="center-align">Is Admin</th>
+                    <th class="center-align"><i class="mdi-action-assignment-ind small"></i></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr data-ng-repeat="user in users | filter: filter">
+                    <td data-ng-show="edit">
+                        <button class="waves-effect waves-light btn-floating red" data-ng-click="remove(user)">
+                            <i class="mdi-content-remove"></i>
+                        </button>
+                    </td>
+                    <td class="table-editable-cell" data-ng-repeat="field in userSchema" data-ng-if="field.inTable">
+                        <span data-ng-if="(field['type'] == 'text')" class="editable-span" data-ng-editable="update(user)" data-ng-editable-model="user[field['schemaKey']]"></span>
+                        <span data-ng-click="beforeSelect(field['schemaKey'], user)" data-ng-if="(field['type'] == 'select')" class="editable-span" data-ng-editable-select="update(user, field['schemaKey'])" data-ng-editable-select-model="user[field['schemaKey']]" data-ng-editable-select-options="field['options']">
                 </span>
-                </td>
-            </tr>
+                    </td>
+                    <td class="center-align teal-text">
+                        <i class="mdi-toggle-check-box small" data-ng-hide="user.roles.indexOf('admin') === -1"></i>
+                        <i class="mdi-toggle-check-box-outline-blank small" data-ng-show="user.roles.indexOf('admin') === -1"></i>
+                    </td>
+                    <td>
+                        <a class="btn btn-block waves-effect waves-light" target="_blank" data-ng-href="http://localhost:8080?url=http://localhost:3000/users/{{ user._id }}/id&amp;download=true&amp;filename=iParkingID_{{ user.name }}"><i class="mdi-file-file-download"></i></a>
+                    </td>
+                </tr>
+            </tbody>
         </table>
+        
         <!-- Modal Trigger -->
         <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
             <button class="edit-users-btn btn-floating btn-large red  waves-effect waves-light" data-ng-if="!edit" data-ng-click="openModal('#new-user-modal')">
@@ -116,8 +125,8 @@
                         <input id="name" type="text" name="name" ng-model="user.name" required>
                     </div>
                     <div class="input-field col s12 m6">
-                        <label for="username">Registration Id</label>
-                        <input id="username" type="text" name="username" ng-model="user.username" required>
+                        <label for="registration-tag">Registration Id</label>
+                        <input id="registration-tag" type="text" name="registration_tag" ng-model="user.registration_tag" required>
                     </div>
                     <div class="input-field col s12 m6">
                         <label for="email">Email</label>

@@ -2,6 +2,15 @@
 
 angular.module('mean.mean-admin').controller('UsersController', ['$scope', 'Global', 'Menus', '$rootScope', '$http', 'Users',
     function($scope, Global, Menus, $rootScope, $http, Users) {
+        var s4 = function() {
+            return Math.floor((1 + Math.random()) * 0x10000)
+                .toString(16)
+                .substring(1);
+        },guid = function() {
+            return s4() + s4() + '' + s4() + '' + s4() + '' +
+                s4() + '' + s4() + s4() + s4();
+        };
+
         $scope.global = Global;
         $scope.userSchema = [{
             title: 'Email',
@@ -14,29 +23,29 @@ angular.module('mean.mean-admin').controller('UsersController', ['$scope', 'Glob
             type: 'text',
             inTable: true
         }, {
-            title: 'Username',
-            schemaKey: 'username',
+            title: '#Control',
+            schemaKey: 'registration_tag',
             type: 'text',
             inTable: true
-        }, {
-            title: 'Roles',
-            schemaKey: 'roles',
-            type: 'select',
-            options: ['authenticated', 'admin'],
-            inTable: true
+                // }, {
+                //     title: 'Roles',
+                //     schemaKey: 'roles',
+                //     type: 'select',
+                //     options: ['authenticated', 'admin'],
+                //     inTable: true
         }];
         $scope.user = {};
         $scope.edit = false;
 
-            $scope.goEdit = function(){
-              console.log('goEdit');
-              $scope.edit = true;
-            };
+        $scope.goEdit = function() {
+            console.log('goEdit');
+            $scope.edit = true;
+        };
 
-            $scope.editDone = function(){
-              console.log('editDone');
-              $scope.edit = false;
-            };
+        $scope.editDone = function() {
+            console.log('editDone');
+            $scope.edit = false;
+        };
 
         $scope.init = function() {
             Users.query({}, function(users) {
@@ -59,7 +68,7 @@ angular.module('mean.mean-admin').controller('UsersController', ['$scope', 'Glob
         $scope.openModal = function(modalSelector) {
             $(modalSelector).openModal();
         };
-        
+
         $scope.closeModal = function(modalSelector) {
             $(modalSelector).closeModal();
         };
@@ -70,7 +79,7 @@ angular.module('mean.mean-admin').controller('UsersController', ['$scope', 'Glob
             var user = new Users({
                 email: $scope.user.email,
                 name: $scope.user.name,
-                username: $scope.user.username,
+                registration_tag: $scope.user.registration_tag,
                 password: $scope.user.password,
                 confirmPassword: $scope.user.password,
                 roles: $scope.user.isAdmin ? ['authenticated', 'admin'] : ['authenticated']
@@ -97,7 +106,13 @@ angular.module('mean.mean-admin').controller('UsersController', ['$scope', 'Glob
                 }
             }
 
-            user.$remove();
+            user.$remove(function() {
+                Materialize.toast(getMessage({
+                    data: [{
+                        msg: 'User removed<span style="width: 6px;"></span><span class="yellow-text"> Successfully </span>'
+                    }]
+                }), 2000);
+            });
         };
 
         $scope.update = function(user, userField) {
@@ -108,7 +123,13 @@ angular.module('mean.mean-admin').controller('UsersController', ['$scope', 'Glob
                     user.roles = user.tmpRoles;
                 }
             } else
-                user.$update();
+                user.$update(function(){
+                    Materialize.toast(getMessage({
+                    data: [{
+                        msg: 'User updated<span style="width: 6px;"></span><span class="yellow-text"> Successfully </span>'
+                    }]
+                }), 2000);
+                });
         };
 
         $scope.beforeSelect = function(userField, user) {

@@ -3,6 +3,7 @@
     var IndexController = function($scope, $timeout, $modal, Global, Checks) {
         $scope.global = Global;
         $scope.checkIn = true;
+        $scope.userId = '';
 
         moment.locale('es');
 
@@ -29,23 +30,23 @@
         };
 
         $scope.saveCheck = function() {
-            if (!$scope.username) {
+            if (!$scope.userId) {
               return;
             }
 
             var type = $scope.checkIn ? 'in' : 'out';
 
             Checks.save({
-                username: $scope.username,
+                userId: $scope.userId,
                 type: type
             }, function(check) {
                 console.log(check);
-                $scope.username = '';
+                $scope.userId = '';
                 Materialize.toast(getMessage(check), 2000);
             }, function(err) {
                 console.log(err);
                 if (err.status === 500 || err.status === 404) {
-                    $scope.username = '';
+                    $scope.userId = '';
                 }
 
                 if (typeof err.data === 'string') {
